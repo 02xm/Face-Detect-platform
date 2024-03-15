@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Probably the most complete UI kit out there. Multiple functionalities and controls added,  extended color palette and beautiful typography, designed as its own extended version of Bootstrap at  the highest level of quality.                             ">
+    <meta name="author" content="Webpixels">
+    <title>人脸识别算法平台Face Recognization</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800|Roboto:400,500,700" rel="stylesheet">
+    <!-- Theme CSS -->
+    <link type="text/css" href="../assets/css/theme.css" rel="stylesheet">
+    <!-- Demo CSS - No need to use these in your project -->
+    <link type="text/css" href="../assets/css/demo.css" rel="stylesheet">
+
+    <style>
+      /* 省略之前的样式 */
+
+      /* 人脸识别板块样式 */
+      .container{
+        /* 添加上边距和下边距，增加空白距离 */
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+      }
+
+      /* 图片上传按钮样式 */
+      .custom-file-upload {
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+      }
+      .text-center {
+        text-align: center;
+      }
+      /* 添加右边部分样式 */
+      .right-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      /* 图片居中显示 */
+      #faceRecognitionResult img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: 0 auto; /* 水平居中 */
+        display: block;
+      }
+
+      /* 添加结果框样式 */
+      #resultBox {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        border: 4px solid black; /* 修改为4px粗线条 */
+      }
+
+      .compact-btn {
+        padding: 4px 8px; /* 调整按钮内边距，使按钮更紧凑 */
+        font-size: 14px; /* 调整按钮字体大小 */
+      }
+      /* 场景内容容器样式 */
+      .scene-content {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* 场景图片样式 */
+      .scene-image {
+        max-width: 100%;
+        max-height: 300px;
+      }
+
+      /* 场景详细描述和产品列举容器样式 */
+      .scene-details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        padding: 10px;
+      }
+
+      /* 详细描述和产品列举框样式 */
+      .details-box {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+
+    </style>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark bg-dark py-4">
+      <div class="container">
+        <span class="navbar-brand"><strong>人脸识别算法平台</strong></span>
+        <button class="navbar-toggler" type="button" data-action="offcanvas-open" data-target="#navbar_main" aria-controls="navbar_main" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbar_main">
+          <ul class="navbar-nav ml-auto align-items-lg-center">
+            <h6 class="dropdown-header font-weight-600 d-lg-none px-0">Menu</h6>
+            <li class="nav-item ">
+              <a class="nav-link" href="#功能展示">功能展示</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#应用场景">应用场景</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#特色优势">特色优势</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="main">
+      <section class="spotlight bg-cover bg-size--cover" style="background-image: url('../assets/images/backgrounds/img-1.jpg')">
+        <span class="mask bg-primary alpha-7"></span>
+        <div class="spotlight-holder py-sm pt-lg-lg">
+          <div class="container d-flex align-items-center">
+            <div class="row cols-xs-space cols-sm-space cols-md-space align-items-center justify-content-around">
+              <div class="col-lg-5 text-center">
+                <h2 class="heading h1 text-white strong-400">
+                  人脸识别平台
+                </h2>
+                <p class="lead text-white mt-4">
+                  平台简介
+                </p>
+                </a>
+              </div>
+              <div class="col-lg-5">
+                <div class="position-relative">
+                  <img src="../assets/images/slider/face.png" class="img-center img-fluid rounded">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="功能展示">
+        <div class="container" style="min-height: 100vh;">
+        <!-- 人脸识别板块 -->
+        <section>
+          <div style="border: 2px solid #ccc; padding: 20px;">
+            <h2 class="container-title text-center">功能展示</h2>
+            <hr>
+            <div class="row">
+              <!-- 左边部分 -->
+              <div class="col-md-6">
+                <!-- 人脸识别结果展示框 -->
+                <div id="faceRecognitionResult" style="border: 1px solid black; height: 400px;"></div>
+
+                <!-- 前三个按钮 -->
+                <button onclick="showImage('../assets/images/slider/example1.jpg')">示例1</button>
+                <button onclick="showImage('../assets/images/slider/example2.jpg')">示例2</button>
+                <button onclick="showImage('../assets/images/slider/example3.jpg')">示例3</button>
+
+                <!-- 本地上传按钮 -->
+                <label for="localUpload" class="custom-file-upload">本地上传</label>
+                <input type="file" id="localUpload" onchange="uploadImage()" accept="image/*" style="display:none;">
+              </div>
+
+              <!-- 右边部分 -->
+              <div class="col-md-6">
+                <!-- 上方按钮 -->
+                <button class="full-width-btn" id="analyzeButton">分析结果</button>
+                <button class="full-width-btn" id="jsonButton">JSON响应</button>
+                <hr>
+
+                <!-- 添加方框效果 -->
+                <div class="border p-4" id="resultBox" style="display: none;">
+                  <div>
+                    欢乐程度：值：<span id="happyValue"></span>，阈值：<span id="happyThreshold"></span>
+                  </div>
+                  <div>
+                    伤心程度：值：<span id="sadValue"></span>，阈值：<span id="sadThreshold"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      </div>
+
+      <script>
+        function showImage(imageSrc) {
+          var resultBox = document.getElementById('faceRecognitionResult');
+          resultBox.innerHTML = '<img src="' + imageSrc + '" style="max-width: 100%; max-height: 100%;" />';
+        }
+
+        // 上传图片函数
+        function uploadImage() {
+          const fileInput = document.getElementById('localUpload');
+          const faceRecognitionResult = document.getElementById('faceRecognitionResult');
+
+          if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+              // 创建一个<img>元素，用于显示上传的图片
+              const img = document.createElement('img');
+              img.src = e.target.result;
+              img.style.maxWidth = '100%'; // 设置图片最大宽度
+              img.style.maxHeight = '100%'; // 设置图片最大高度（修改为和父容器高度一样）
+
+              // 清空人脸识别展示框并添加新的图片
+              faceRecognitionResult.innerHTML = '';
+              faceRecognitionResult.appendChild(img);
+            };
+
+            // 读取上传的图片数据
+            reader.readAsDataURL(fileInput.files[0]);
+          }
+        }
+        // 获取按钮和结果框元素
+        const analyzeButton = document.getElementById('analyzeButton');
+        const resultBox = document.getElementById('resultBox');
+        const happyValueSpan = document.getElementById('happyValue');
+        const happyThresholdSpan = document.getElementById('happyThreshold');
+        const sadValueSpan = document.getElementById('sadValue');
+        const sadThresholdSpan = document.getElementById('sadThreshold');
+
+        // 添加“分析结果”按钮点击事件处理程序
+        analyzeButton.addEventListener('click', function() {
+          // 获取欢乐程度和伤心程度的值和阈值的函数
+          const happyValue = getHappyValue();
+          const happyThreshold = getHappyThreshold();
+          const sadValue = getSadValue();
+          const sadThreshold = getSadThreshold();
+
+          // 更新结果框中的值
+          happyValueSpan.textContent = happyValue;
+          happyThresholdSpan.textContent = happyThreshold;
+          sadValueSpan.textContent = sadValue;
+          sadThresholdSpan.textContent = sadThreshold;
+
+          // 显示结果框
+          resultBox.style.display = 'block';
+        });
+
+        // 添加“JSON响应”按钮点击事件处理程序（这里可以根据需要添加相应的功能）
+        const jsonButton = document.getElementById('jsonButton');
+        jsonButton.addEventListener('click', function() {
+          // 在这里处理JSON响应的逻辑
+          alert('JSON响应被点击了！');
+          // 可以执行其他操作或显示其他内容
+        });
+      </script>
+
+      <div id="应用场景" style="height: 100vh; display: flex; flex-direction: column;">
+        <div class="container" style="flex: 1;">
+          <section style="height: 100%;">
+            <div style="border: 2px solid #ccc; padding: 20px; height: 100%;">
+            <h2 class="container-title text-center">应用场景</h2>
+            <hr>
+            <div class="row">
+              <!-- 左边部分，占十分之一的位置 -->
+              <div class="col-md-1">
+                <!-- 场景按钮 -->
+                <div class="d-flex flex-column">
+                  <button class="mb-2 compact-btn" onclick="showScene('学校')">场景1</button>
+                  <button class="mb-2 compact-btn" onclick="showScene('医院')">场景2</button>
+                  <button class="compact-btn" onclick="showScene('图书馆')">场景3</button>
+                </div>
+              </div>
+              <!-- 右边部分，占剩余的九分之九的位置 -->
+              <div class="col-md-9">
+                <div class="scene-content">
+                  <div class="scene-details">
+                    <div class="details-box" id="sceneName">学校</div>
+                    <div class="details-box" id="sceneDescription">场景详细叙述</div>
+                    <div class="details-box" id="sceneProducts">有关产品列举</div>
+                  </div>
+                  <div><img src="../assets/images/slider/example0.jpg" class="scene-image" id="sceneImage" alt="场景配图"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      </div>
+
+
+      <script>
+        function showScene(sceneName) {
+          var sceneNameBox = document.getElementById('sceneName');
+          var sceneDescriptionBox = document.getElementById('sceneDescription');
+          var sceneProductsBox = document.getElementById('sceneProducts');
+          var sceneImage = document.getElementById('sceneImage');
+
+          sceneNameBox.textContent = '场景名：' + sceneName;
+
+          // 设置场景详细叙述和产品列举
+          if (sceneName === '学校') {
+            sceneDescriptionBox.textContent = '学校场景详细叙述';
+            sceneProductsBox.textContent = '有关学校的产品列举';
+            sceneImage.src = '../assets/images/slider/school.jpg'; // 设置对应的图片链接
+          } else if (sceneName === '医院') {
+            sceneDescriptionBox.textContent = '医院场景详细叙述';
+            sceneProductsBox.textContent = '有关医院的产品列举';
+            sceneImage.src = '../assets/images/slider/hospital.jpg'; // 设置对应的图片链接
+          } else if (sceneName === '图书馆') {
+            sceneDescriptionBox.textContent = '图书馆场景详细叙述';
+            sceneProductsBox.textContent = '有关图书馆的产品列举';
+            sceneImage.src = '../assets/images/slider/library.jpg'; // 设置对应的图片链接
+          }
+        }
+      </script>
+
+      <div id="特色优势">
+      <!-- 特色优势板块 -->
+      <section class="application-section">
+        <div class="container" style="min-height: 100vh;">
+          <div style="border: 2px solid #ccc; padding: 20px; min-height: calc(100vh - 20px);">
+            <h2 class="container-title text-center">特色优势</h2>
+            <hr>
+
+            <div class="row">
+              <!-- 上部分 -->
+              <div class="col-md-12">
+                <h3>算法层面创新与优势阐述</h3>
+                <p>在这里写算法层面创新与优势的内容...</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- 左边部分 - 数据集介绍 -->
+              <div class="col-md-4">
+                <h3>数据集介绍</h3>
+                <p>在这里写数据集介绍的内容...</p>
+              </div>
+
+
+              <!-- 右边部分 - 对比实验结果展示 -->
+              <div class="col-md-7">
+                <h3>对比实验结果展示</h3>
+                <!-- 在这里添加对比实验结果的内容，可以使用图片、表格等 -->
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+      </div>
+    </main>
+  </body>
+</html>
